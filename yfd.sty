@@ -4,12 +4,100 @@
 \usepackage{setspace,multicol}                      % Text Presets
 \usepackage{algorithm,algpseudocode}                % Algorithms Presets
 \setlength\parindent{0pt}
-
+\usepackage{fullpage}
 \usepackage{hyperref}
 \hypersetup{
 colorlinks=true,
 citecolor=blue
 }
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}{Corollary}[theorem]
+\usepackage[yyyymmdd]{datetime}
+\usepackage[hashEnumerators,smartEllipses]{markdown}
+\renewcommand{\dateseparator}{--}
+%**********
+% Commands
+%**********
+% Math commands:
+\newcommand{\half} {\frac12}
+\newcommand{\thalf}{\tfrac12}
+% Redefined math commands:
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+% Math commands with arguments
+\newcommand{\argmin}[1]{{\displaystyle\mathop{\rm argmin}_{#1}}}
+\newcommand{\C}[1]{\mathbb{C}^{#1}}
+\newcommand{\N}[1]{\mathbb{N}^{#1}}
+\newcommand{\Q}[1]{\mathbb{Q}^{#1}}
+\newcommand{\R}[1]{\mathbb{R}^{#1}}
+\newcommand{\Rext}[1]{\skew{-2}\overline{\mathbb{R}}^{#1}}
+\newcommand{\Z}[1]{\mathbb{Z}^{#1}}
+
+%*************
+% Begin...End
+%*************
+\newcommand{\balgorithm}   {\begin{algorithm}}
+\newcommand{\ealgorithm}   {\end{algorithm}}
+\newcommand{\balgorithmic} {\begin{algorithmic}}
+\newcommand{\ealgorithmic} {\end{algorithmic}}
+\newcommand{\baligned}     {\begin{aligned}}
+\newcommand{\ealigned}     {\end{aligned}}
+\newcommand{\barray}       {\begin{array}}
+\newcommand{\earray}       {\end{array}}
+\newcommand{\bassumption}  {\begin{assumption}}
+\newcommand{\eassumption}  {\end{assumption}}
+\newcommand{\bbmatrix}     {\begin{bmatrix}}
+\newcommand{\ebmatrix}     {\end{bmatrix}}
+\newcommand{\bcases}       {\begin{cases}}
+\newcommand{\ecases}       {\end{cases}}
+\newcommand{\bcenter}      {\begin{center}}
+\newcommand{\ecenter}      {\end{center}}
+\newcommand{\bcolumn}      {\begin{column}}
+\newcommand{\ecolumn}      {\end{column}}
+\newcommand{\bcolumns}     {\begin{columns}}
+\newcommand{\ecolumns}     {\end{columns}}
+\newcommand{\bcorollary}   {\begin{corollary}}
+\newcommand{\ecorollary}   {\end{corollary}}
+\newcommand{\bdefinition}  {\begin{definition}}
+\newcommand{\edefinition}  {\end{definition}}
+\newcommand{\benumerate}   {\begin{enumerate}}
+\newcommand{\eenumerate}   {\end{enumerate}}
+\newcommand{\bequation}    {\begin{equation}}
+\newcommand{\eequation}    {\end{equation}}
+\newcommand{\bequationNN}  {\begin{equation*}}
+\newcommand{\eequationNN}  {\end{equation*}}
+\newcommand{\bexample}     {\begin{example}}
+\newcommand{\eexample}     {\end{example}}
+\newcommand{\bfigure}      {\begin{figure}}
+\newcommand{\efigure}      {\end{figure}}
+\newcommand{\bflushright}  {\begin{flushright}}
+\newcommand{\eflushright}  {\end{flushright}}
+\newcommand{\bitemize}     {\begin{itemize}}
+\newcommand{\eitemize}     {\end{itemize}}
+\newcommand{\blemma}       {\begin{lemma}}
+\newcommand{\elemma}       {\end{lemma}}
+\newcommand{\bpmatrix}     {\begin{pmatrix}}
+\newcommand{\epmatrix}     {\end{pmatrix}}
+\newcommand{\bproof}       {\begin{proof}}
+\newcommand{\eproof}       {\end{proof}}
+\newcommand{\bsubequations}{\begin{subequations}}
+\newcommand{\esubequations}{\end{subequations}}
+\newcommand{\btable}       {\begin{table}}
+\newcommand{\etable}       {\end{table}}
+\newcommand{\btabular}     {\begin{tabular}}
+\newcommand{\etabular}     {\end{tabular}}
+\newcommand{\bvmatrix}     {\begin{vmatrix}}
+\newcommand{\evmatrix}     {\end{vmatrix}}
+\newcommand{\bproblem}     {\begin{problem}}
+\newcommand{\eproblem}     {\end{problem}}
+\newcommand{\btheorem}     {\begin{theorem}}
+\newcommand{\etheorem}     {\end{theorem}}
+
 %****************
 % Math Operators
 %****************
@@ -30,11 +118,8 @@ citecolor=blue
 \DeclareMathOperator{\Null}     {Null}
 \DeclareMathOperator{\paraff}   {par}
 \DeclareMathOperator{\proj}     {Proj}
-\DeclareMathOperator{\prox}     {prox}
 \DeclareMathOperator{\Range}    {Range}
-\DeclareMathOperator{\Rank}     {\bf rank}
-\let\Null\relax
-\DeclareMathOperator{\Null}     {\bf null}
+\DeclareMathOperator{\rank}     {rank}
 \DeclareMathOperator{\recc}     {recc}
 \DeclareMathOperator{\recf}     {recf}
 \DeclareMathOperator{\ri}       {ri}
@@ -42,7 +127,6 @@ citecolor=blue
 \DeclareMathOperator{\subjectto}{subject~to}
 \DeclareMathOperator{\trace}    {tr}
 
-\newcommand{\R}[1]{\mathbb{R}^{#1}}
 %*********
 % Letters
 %*********
@@ -155,6 +239,7 @@ citecolor=blue
 \newcommand{\zmbf}{\mathbf{z}}
 % Declare shorthand commands for (lowercase and uppercase) overlined letters:
 \newcommand{\oline}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1}}
+\newcommand{\alphabar}{\oline{\alpha}}
 \newcommand{\Abar}{\oline{A}}
 \newcommand{\abar}{\oline{a}}
 \newcommand{\Bbar}{\oline{B}}
@@ -313,21 +398,6 @@ citecolor=blue
 \newcommand{\yhat}{\hat{y}}
 \newcommand{\Zhat}{\hat{Z}}
 \newcommand{\zhat}{\hat{z}}
-%**********
-% Theorems
-%**********
 
-
-%*************
-% Begin...End
-%*************
-\newcommand{\balgorithm}   {\begin{algorithm}}
-\newcommand{\ealgorithm}   {\end{algorithm}}
-\newcommand{\balgorithmic} {\begin{algorithmic}}
-\newcommand{\ealgorithmic} {\end{algorithmic}}
-\newcommand{\baligned}     {\begin{aligned}}
-\newcommand{\ealigned}     {\end{aligned}}
-\newcommand{\barray}       {\begin{array}}
-\newcommand{\earray}       {\end{array}}
-\newcommand{\bassumption}  {\begin{assumption}}
-\newcommand{\eassumption}  {\end{assumption}}
+% Algorithm commands
+\algrenewcommand{\algorithmiccomment}[1]{\hfill[#1]}
